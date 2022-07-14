@@ -3,6 +3,8 @@
     <output-path>$PROJECT_DIR$/spring-gradle-xml/build/libs/exploded/untitled-1.0-SNAPSHOT.war</output-path>
     <properties id="gradle-properties">
       <options external-project-path="$PROJECT_DIR$/spring-gradle-xml">
+        <buildTaskPath>:war_exploded</buildTaskPath>
+        <cleanTaskPath>:cleanWar_exploded</cleanTaskPath>
         <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
       </options>
     </properties>

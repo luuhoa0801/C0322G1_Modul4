@@ -2,7 +2,10 @@
   <artifact type="war" name="Gradle : untitled-1.0-SNAPSHOT.war">
     <output-path>$PROJECT_DIR$/spring-gradle-xml/build/libs</output-path>
     <properties id="gradle-properties">
-      <options external-project-path="$PROJECT_DIR$/spring-gradle-xml" />
+      <options external-project-path="$PROJECT_DIR$/spring-gradle-xml">
+        <buildTaskPath>:war</buildTaskPath>
+        <cleanTaskPath>:cleanWar</cleanTaskPath>
+      </options>
     </properties>
     <root id="archive" name="untitled-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="Gradle : untitled-1.0-SNAPSHOT.war (exploded)" />

@@ -23,8 +23,7 @@ public class DictionaryService implements IDictionaryService {
 //        }
 //        return "không có";
 
-        String result =  map.get(world);
-
+        String result = map.get(world);
         return result == null ? "không có" : result;
 
 //        if(map.get(world) != null){

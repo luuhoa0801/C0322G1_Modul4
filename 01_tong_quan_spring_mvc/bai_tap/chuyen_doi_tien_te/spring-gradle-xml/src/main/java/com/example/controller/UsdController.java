@@ -21,7 +21,7 @@ public class UsdController {
     }
 
     @PostMapping("/money")
-    public String PostUsd(@RequestParam(name = "usd") String usd, Model model) {
+    public String PostUsd(@RequestParam(name = "usd", defaultValue = "1") String usd, Model model) {
         model.addAttribute("result", iUsdService.usdNumber(usd));
         model.addAttribute("usd", usd);
         return "home";

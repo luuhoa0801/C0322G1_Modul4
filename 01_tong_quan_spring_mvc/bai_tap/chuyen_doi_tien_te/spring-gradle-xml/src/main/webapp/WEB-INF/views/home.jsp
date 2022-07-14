@@ -9,10 +9,9 @@
 <h1> Chuyển đổi tiền tệ </h1>
 
 <form action="/money" method="post">
-
-    <input type="number" name="usds" placeholder="nhập số tiền muốn đổi" value="${usd}" >  <span><button > Đổi </button></span>
+    <input type="number" name="usd" placeholder="nhập số tiền muốn đổi" value="${usd}" >
+    <span><button > Đổi </button></span>
      <p>Kết quả:  ${result}</p>
-<%--    value="${usd}"--%>
 </form>
 </body>
 </html>

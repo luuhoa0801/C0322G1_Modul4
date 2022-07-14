@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.service.DictionaryService;
 import com.example.service.IDictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class DictionaryController {
     @PostMapping("/dictionary")
     public String postDictionary(@RequestParam(name = "world") String world, Model model) {
         model.addAttribute("result", iDictionaryService.late(world));
-//        model.addAttribute("english",world);
+        model.addAttribute("english",world);
         return "home";
     }
 }
