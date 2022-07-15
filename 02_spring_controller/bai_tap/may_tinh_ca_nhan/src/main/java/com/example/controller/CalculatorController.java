@@ -19,11 +19,13 @@ public class CalculatorController {
     }
 
     @PostMapping("/calculator")
-    public String postCalculator(@RequestParam(name = "number1") String number1,
-                                 @RequestParam(name = "number2") String number2,
+    public String postCalculator(@RequestParam(name = "number1",defaultValue = "phai nhap vao") String number1,
+                                 @RequestParam(name = "number2",defaultValue = "pai nhap vao") String number2,
                                  @RequestParam(name = "check") char check,
                                  Model model) {
         model.addAttribute("result", iCalculatorService.calculator(number1, number2, check));
+        model.addAttribute("number1",number1);
+        model.addAttribute("number2",number2);
         return "home";
     }
 
