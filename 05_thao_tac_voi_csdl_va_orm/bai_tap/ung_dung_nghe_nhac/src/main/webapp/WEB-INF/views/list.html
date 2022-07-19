@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <head>
+        <title>Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+<body>
+
+<p>
+    <a th:href="@{/create}">
+        Add new Music
+    </a>
+</p>
+<p>
+    <a th:href="@{/music}">
+        Music list
+    </a>
+</p>
+
+<form action="/search" method="get">
+    <input type="text" name="name">
+    <input type="submit" value="Search">
+</form>
+
+
+<table id="musics">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Tên</th>
+        <th>Nghệ sĩ thể hiện</th>
+        <th>Thể loại</th>
+        <th>Url</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="music,loop : ${listMusic}">
+        <td th:text="${music.id}"></td>
+        <td th:text="${music.name}"></td>
+        <td th:text="${music.showMan}"></td>
+        <td th:text="${music.category}"></td>
+        <td>
+            <a th:text="${music.url}" th:href="${music.url}"></a>
+        </td>
+        <td th:text="${music.status}"></td>
+        <td><a th:href="@{{id}/edit(id=${music.id})}">edit</a></td>
+        <td><a th:href="@{{id}/delete(id=${music.id})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
