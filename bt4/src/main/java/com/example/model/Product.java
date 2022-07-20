@@ -1,21 +1,31 @@
 package com.example.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.*;
+
+@Entity(name = "product_mo")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double price;
     private String status;
     private String producer;
-
+    @ColumnDefault("0")
+    @Column(name = "status_delete")
+    private int statusDelete;
     public Product() {
     }
 
-    public Product(int id, String name, double price, String status, String producer) {
+    public Product(int id, String name, double price, String status, String producer, int statusDelete) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.status = status;
         this.producer = producer;
+        this.statusDelete = statusDelete;
     }
 
     public int getId() {
@@ -56,5 +66,13 @@ public class Product {
 
     public void setProducer(String producer) {
         this.producer = producer;
+    }
+
+    public int getStatusDelete() {
+        return statusDelete;
+    }
+
+    public void setStatusDelete(int statusDelete) {
+        this.statusDelete = statusDelete;
     }
 }

@@ -3,43 +3,56 @@ package com.example.repository;
 import com.example.model.Product;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.persistence.EntityTransaction;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ProductRepository implements IProductRepository{
-    private static Map<Integer, Product> listProduct;
-    static {
-        listProduct = new HashMap<>();
-        listProduct.put(1,new Product(1,"ip1",1000.0,"co","apple"));
-        listProduct.put(2,new Product(2,"ip2",1000.0,"co","apple"));
-        listProduct.put(3,new Product(3,"alo",1000.0,"co","apple"));
-    }
+
     @Override
     public List<Product> fillAll() {
-        return new ArrayList<>(listProduct.values());
+        List<Product> productList = BaseRepository.entityManager.createQuery
+                ("select p from product_mo p where statusDelete = 0", Product.class).getResultList();
+        return productList;
     }
 
     @Override
     public Product findById(int id) {
-        return listProduct.get(id);
-    }
-
-    @Override
-    public List<Product> searchByName(String name) {
-        List<Product> searchList = new ArrayList<>();
-        for (Map.Entry<Integer, Product> item : listProduct.entrySet()) {
-            if (item.getValue().getName().toLowerCase().contains(name.toLowerCase())) {
-                searchList.add(item.getValue());
-            }
-        }
-        return searchList;
+        Product product = BaseRepository.entityManager.createQuery
+                ("select p from product_mo p where id=?1", Product.class).setParameter(1, id).getSingleResult();
+        return product;
     }
 
     @Override
     public void delete(int id) {
-    listProduct.remove(id);
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+        Product product = findById(id);
+        product.setStatusDelete(1);
+        BaseRepository.entityManager.merge(product);
+        entityTransaction.commit();
     }
+
+    @Override
+    public void update(Product product) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+        BaseRepository.entityManager.merge(product);
+        entityTransaction.commit();
+    }
+
+    @Override
+    public void save(Product product) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+        BaseRepository.entityManager.persist(product);
+        entityTransaction.commit();
+    }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        List<Product> searchList = BaseRepository.entityManager.createQuery
+                ("select p from product_mo p where name like ?1 and status_delete = 0 ", Product.class).
+                setParameter(1, "%" + name + "%").getResultList();
+        return searchList;    }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> Add Blog </h2>
+<p>
+    <a th:href="@{/blog}">
+        Blog list
+    </a>
+</p>
+<div>
+    <form th:object="${blog}" action="/create" method="post">
+        Title <input th:field="*{title}"> <br>
+        CreateDay <input type="date" th:field="*{createDay}"> <br>
+        Status <input th:field="*{statusDelete}"> <br>
+        <button type="submit"> Create</button>
+    </form>
+</div>
+</body>
+</html>

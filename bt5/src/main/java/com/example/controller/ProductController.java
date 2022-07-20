@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ProductController {
@@ -17,5 +18,9 @@ public class ProductController {
         model.addAttribute("listProduct", iProductService.fillAll());
         return "home";
     }
-
+    @GetMapping("/product/delete/{id}")
+    public String delete(@PathVariable int id) {
+        iProductService.delete(id);
+        return "redirect:/product";
+    }
 }

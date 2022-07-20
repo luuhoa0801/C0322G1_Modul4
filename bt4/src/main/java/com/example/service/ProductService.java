@@ -21,13 +21,24 @@ public class ProductService implements IProductService {
         return iProductRepository.findById(id);
     }
 
-    @Override
-    public List<Product> searchByName(String name) {
-        return iProductRepository.searchByName(name);
-    }
 
     @Override
     public void delete(int id) {
     iProductRepository.delete(id);
+    }
+
+    @Override
+    public void update(Product product) {
+    iProductRepository.update(product);
+    }
+
+    @Override
+    public void save(Product product) {
+    iProductRepository.save(product);
+    }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        return iProductRepository.searchByName(name);
     }
 }

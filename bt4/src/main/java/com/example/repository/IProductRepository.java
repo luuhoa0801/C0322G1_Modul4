@@ -9,8 +9,12 @@ public interface IProductRepository {
 
     Product findById(int id);
 
-    List<Product> searchByName(String name);
-
     void delete(int id);
+
+    void update(Product product);
+
+    void save(Product product);
+
+    List<Product> searchByName(String name);
 
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <head>
+        <title>Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    </head>
+<body>
+<h2> Blog</h2>
+<p>
+    <a th:href="@{/create}">
+        Add new Blog
+    </a>
+</p>
+<p>
+    <a th:href="@{/blog}">
+        Blog list
+    </a>
+</p>
+
+<table id="blogs">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>CreateDay</th>
+        <th>StatusDelete</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,loop : ${listBlog}">
+        <td th:text="${blog.id}"></td>
+        <td th:text="${blog.title}"></td>
+        <td th:text="${blog.createDay}"></td>
+        <td th:text="${blog.statusDelete}"></td>
+        <td><a th:href="@{{id}/edit(id=${blog.id})}">edit</a></td>
+        <td><a th:href="@{{id}/delete(id=${blog.id})}">delete</a></td>
+        <td><a th:href="@{{id}/view(id=${blog.id})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
