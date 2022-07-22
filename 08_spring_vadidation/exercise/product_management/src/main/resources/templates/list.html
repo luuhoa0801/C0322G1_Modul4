@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+</head>
+<body>
+<h3>Product</h3>
+<p>
+    <a th:href="@{/create}">
+        <button>
+            Add new Product
+        </button>
+    </a>
+</p>
+<div>
+    <p th:if="${msg != null }">
+    <h4 th:text="${msg}"></h4>
+    </p>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Id</th>
+        <th>Tên sản phẩm</th>
+        <th>Gía</th>
+        <th>Trạng thái</th>
+        <th>Nhà sản xuất</th>
+        <th>StatusDelete</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product,varStat : ${listProduct}">
+        <td th:text="${varStat.count}"></td>
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.status}"></td>
+        <td th:text="${product.producer}"></td>
+        <td th:text="${product.statusDelete}"></td>
+        <td><a th:href="@{{id}/update(id=${product.id})}">Edit</a></td>
+        <td><a th:href="@{{id}/delete(id=${product.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span>
+        <a th:if="${listProduct.hasPrevious()}" th:href="@{/product(page = ${listProduct.number - 1})}">Previous</a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,listProduct.totalPages - 1)}">
+        <a th:href="@{/product(page = ${pageNo})}" th:text="${pageNo}"></a>
+    </span>
+    <span>
+        <a th:if="${listProduct.hasNext()}" th:href="@{/product(page = ${listProduct.number +1})}">Next</a>
+    </span>
+</div>
+
+</body>
+</html>

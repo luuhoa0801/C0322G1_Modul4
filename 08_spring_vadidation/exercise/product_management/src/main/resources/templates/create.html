@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<p>
+    <a th:href="@{/product}">
+        Back to Product list
+    </a>
+</p>
+
+<form th:object="${product}" action="/create" method="post">
+    <table>
+        <tr>
+            <td> Tên sản phẩm</td>
+            <td>
+                <input type="text" th:field="*{name}" />
+                <p style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td> Giá</td>
+            <td>
+                <input type="text" th:field="*{price}" />
+                <p style="color: red;" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Tình trạng</td>
+            <td>
+                <input type="text" th:field="*{status}" />
+                <p style="color: red;" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td> Nhà sản xuất</td>
+            <td>
+                <input type="text" th:field="*{producer}" />
+                <p style="color: red;" th:if="${#fields.hasErrors('producer')}" th:errors="*{producer}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit"> Thêm</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+</body>
+
+</html>

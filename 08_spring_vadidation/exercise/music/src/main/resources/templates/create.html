@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+</head>
+<body>
+<p>
+    <a th:href="@{/music}">
+        Back to Music list
+    </a>
+</p>
+
+<form th:object="${music}" action="/create" method="post">
+
+    Tên bài hát <input th:field="*{name}"><br>
+    <p style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+    Người thể hiện <input th:field="*{showMan}"><br>
+    <p style="color: red;" th:if="${#fields.hasErrors('showMan')}" th:errors="*{showMan}"></p>
+
+    Thể loại <input th:field="*{category}"><br>
+    <p style="color: red;" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
+
+    <button type="submit"> Thêm</button>
+</form>
+</body>
+</html>
