@@ -3,12 +3,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Customer</title>
-    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{datatables/css/dataTables.bootstrap4.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/datatables/css/dataTables.bootstrap4.min.css}"/>
 </head>
 <body>
 
-<a href="/customer" style="margin-left: 50px">Trang Customer </a>
+<a href="facility" style="margin-left: 50px">Trang Faccility </a>
 <a href="http://localhost:8080" style="margin-left: 50px">Trang Chủ </a>
 
 <nav class="navbar navbar-light bg-light">
@@ -22,39 +22,46 @@
        border="2" style="border-collapse:  collapse;padding-top: 10px;width: 90%">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>BirthDay</th>
-        <th>Gender</th>
-        <th>IdCard</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>
+        <th>Id</th>
+        <th>Tên</th>
+        <th>Diệntích</th>
+        <th>Phíthuê</th>
+        <th>Max người</th>
+        <th>Tiêu chuẩn phòng</th>
+        <th>Mô tả #</th>
+        <th>Diện tích hồ bơi</th>
+        <th>Số tầng</th>
+        <th>Dịch vụ Free #</th>
         <th>status</th>
-        <th>CustomerType</th>
+        <th>RentType</th>
+        <th>FacilityType</th>
         <th>Chỉnh sửa</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="customer,loop : ${listCustomer}">
-        <td th:text="${customer.id}"></td>
-        <td th:text="${customer.name}"></td>
-        <td th:text="${customer.birthday}"></td>
-        <td th:text="${customer.gender}"></td>
-        <td th:text="${customer.id_card}"></td>
-        <td th:text="${customer.phone}"></td>
-        <td th:text="${customer.email}"></td>
-        <td th:text="${customer.address}"></td>
-        <td th:text="${customer.status}"></td>
-        <td th:text="${customer.customerType.name}"></td>
+    <tr th:each="facility,loop : ${listFacility}">
+        <td th:text="${facility.id}"></td>
+        <td th:text="${facility.name}"></td>
+        <td th:text="${facility.area}"></td>
+        <td th:text="${facility.cost}"></td>
+        <td th:text="${facility.maxPeople}"></td>
+        <td  th:text="${facility.standardRoom}"></td>
+        <td  th:text="${facility.descriptionOtherConvenience}"></td>
+        <td  th:text="${facility.poolArea}"></td>
+        <td  th:text="${facility.numberOfFloors}"></td>
+        <td  th:text="${facility.facilityFree}"></td>
+        <td th:text="${facility.status}"></td>
+        <td th:text="${facility.rentType.name}"></td>
+        <td th:text="${facility.facilityType.name}"></td>
         <td>
-            <a th:href="@{{id}/edit(id=${customer.id})}">Edit</a>
+            <a th:href="@{{id}/edit(id=${facility.id})}">Edit</a>
 
-            <a href="#" th:attr="onclick=|customerIndex('${customer.id}','${customer.name}')|"
+            <a href="#" th:attr="onclick=|customerIndex('${facility.id}','${facility.name}')|"
                data-toggle="modal"
                data-target="#delete">
                 Delete
             </a>
+
         </td>
     </tr>
 
@@ -70,67 +77,35 @@
     </tr>
 </table>
 
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog" role="document">
         <div class="modal-content" >
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Create Customer</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Chọn thuộc tính muốn thêm mới</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label >Nhập tên:</label>
-                    <input type="text" class="form-control" placeholder="Enter tên" id="nameCustomer">
-                    <!--                    <p class="form-control" style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
-                </div>
-                <div class="form-group">
-                    <label>Ngày sinh:</label>
-                    <input type="date" class="form-control" placeholder="Enter birthday" id="birthday" >
-                </div>
-                <div class="form-group">
-                    <label>Giới tính:</label>
-                    <select class="form-control" id="gender">
-                        <option value="1">Nam</option>
-                        <option value="0">Nữ</option>
-                    </select>
-                    <!--                    <input type="text" class="form-control" placeholder="Enter giới tính" id="gender" >-->
-                </div>
-                <div class="form-group">
-                    <label>Chứng minh:</label>
-                    <input type="text" class="form-control" placeholder="Enter CMND" id="id_card" >
-                </div>
-                <div class="form-group">
-                    <label>Số phone:</label>
-                    <input type="text" class="form-control" placeholder="Enter phone" id="phone" >
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" class="form-control" placeholder="Enter email" id="email" >
-                </div>
-                <div class="form-group">
-                    <label>Địa chỉ:</label>
-                    <input type="text" class="form-control" placeholder="Enter địa chỉ" id="address" >
-                </div>
-                <div class="form-group">
-                    <select name="customerType" class="form-control custom-select bg-light" id="customerType">
-                        <option th:each="customerType:${listCustomerType}" th:value="${customerType.id}"
-                                th:text="${customerType.name}"> Kiểu khách hàng
-                        </option>
-                    </select>
-                </div>
+            <div class="modal-footer border-0">
+                <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" id="villa"
+                   href="create/Villa">
+                    Villa
+                </a>
 
+                <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" id="house"
+                   href="create/House">
+                    House
+                </a>
+
+                <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" id="room"
+                   href="create/Room">
+                    Room
+                </a>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                <button type="button" class="btn btn-primary add" id="createCustomer" data-dismiss="modal">Thêm mới</button>
-            </div>
+
         </div>
     </div>
 </div>
-
 
 <div class="modal" id="delete">
     <div class="modal-dialog">
@@ -139,7 +114,6 @@
                 <h4 class="modal-title w-100 text-center" id="name" ></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark" onclick="customerIndex2()">
                     <a class="text-white">Xóa</a>
@@ -152,12 +126,12 @@
 
 <div>
     <span>
-        <a th:if = "${listCustomer.hasPrevious()}" th:href="@{/customer(page = ${listCustomer.number - 1})}" >Previous</a>
+        <a th:if = "${listFacility.hasPrevious()}" th:href="@{/service/facility(page = ${listFacility.number - 1},name = ${name})}" >Previous</a>
     </span>
-    <span th:text="${listCustomer.number +1 }"> </span> /
-    <span th:text="${listCustomer.totalPages}"> </span>
+    <span th:text="${listFacility.number +1 }"> </span> /
+    <span th:text="${listFacility.totalPages}"> </span>
     <span>
-        <a th:if = "${listCustomer.hasNext()}" th:href="@{/customer(page = ${listCustomer.number +1})}">Next</a>
+        <a th:if = "${listFacility.hasNext()}" th:href="@{/service/facility(page = ${listFacility.number +1},name = ${name})}">Next</a>
     </span>
 </div>
 
@@ -173,18 +147,17 @@
 </script>
 
 <script>
-    var customerId;
+    var facilityId;
 
     function customerIndex(index, name) {
-        customerId = index;
+        facilityId = index;
         document.getElementById("name").innerHTML = "bạn có muốn xóa không ? <br>" + name;
     };
 
     function customerIndex2() {
-        link = "/customer/delete/" + customerId;
+        link = "/service/facility/delete/" + facilityId;
         window.location.href = link;
     };
 </script>
 
-<script th:src="@{/js/file.js}"></script>
 </html>

@@ -1,10 +1,86 @@
-<!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Thêm mới Hợp đồng</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/datatables/css/dataTables.bootstrap4.min.css}"/>
+    <style>
+        .center-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .head-text {
+            font-size: 30px;
+            font-weight: bold;
+            height: 10%;
+        }
+        .footer{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+    </style>
 </head>
-<body>
-$END$
+
+<body class="bg-dark">
+<div class="container">
+    <div class="bg-white">
+        <div class="h1 center-box "> Thêm mới Contract </div>
+        <form th:action="@{/contract/create}" method="post" class="p-3" th:object="${contract}">
+            <div class="form-group">
+                <label>Nhập ngày bắt đầu:</label>
+                <input type="date" class="form-control" placeholder="Enter name" th:field="*{startDate}" >
+            </div>
+            <div class="form-group">
+                <label>Ngày kết thúc:</label>
+                <input type="date" class="form-control" placeholder="Enter birthday" th:field="*{endDate}" >
+            </div>
+            <div class="form-group">
+                <label>Số lượng hợp đồng:</label>
+                <input type="text" class="form-control" placeholder="Enter CMND" th:field="*{deposit}" >
+            </div>
+
+
+            <div class="form-group">
+                <select  class="form-control custom-select bg-light" th:field="*{customer.id}">
+                    <option th:each="customer:${listCustomer}" th:value="${customer.id}"
+                            th:text="${customer.name}"> Khách hàng
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select  class="form-control custom-select bg-light" th:field="*{employee.id}">
+                    <option th:each="employee:${listEmployee}" th:value="${employee.id}"
+                            th:text="${employee.name}"> Nhân viên
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control custom-select bg-light" th:field="*{facility.id}">
+                    <option th:each="facility:${listFacility}" th:value="${facility.id}"
+                            th:text="${facility.name}"> Danh sách dịch vụ
+                    </option>
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Thêm mới hợp đồng</button>
+        </form>
+    </div>
+</div>
+
+
 </body>
+
+<script th:src="@{/jquery/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/datatables/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous">
+</script>
+
 </html>

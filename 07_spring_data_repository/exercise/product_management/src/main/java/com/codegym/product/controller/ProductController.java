@@ -41,18 +41,6 @@ public class ProductController {
         return "redirect:/product";
     }
 
-//    @GetMapping("/{id}/delete")
-//    public String delete(@PathVariable int id, Model model) {
-//        model.addAttribute("product", iProductService.findById(id));
-//        return "delete";
-//    }
-//
-//    @PostMapping("/delete")
-//    public String delete(Product product) {
-//        iProductService.delete(product.getId());
-//        return "redirect:/product";
-//    }
-
     @GetMapping("/product/delete/{id}")
     public String delete(@PathVariable int id, Model model) {
         iProductService.delete(id);
@@ -76,12 +64,5 @@ public class ProductController {
         model.addAttribute("product", iProductService.findById(id));
         return "view";
     }
-
-//    @GetMapping("/search")
-//    public String searchByName(String name, @RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-//        Page<Product> list = iProductService.searchByName(name, PageRequest.of(page, 1));
-//        model.addAttribute("listProduct", list);
-//        return "home";
-//    }
 
 }
