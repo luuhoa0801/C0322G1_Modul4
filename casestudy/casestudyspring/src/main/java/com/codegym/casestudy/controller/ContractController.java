@@ -35,7 +35,7 @@ public class ContractController {
         model.addAttribute("listFacility", iFacilityService.findAll());
         return "/contract/list";
     }
-    @GetMapping("/create")   
+    @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("contract", new Contract());
         model.addAttribute("listCustomer", iCustomerService.findAll());

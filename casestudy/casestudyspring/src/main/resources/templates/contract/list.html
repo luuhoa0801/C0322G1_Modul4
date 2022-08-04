@@ -35,8 +35,8 @@
         <td th:text="${contract.customer.name}"></td>
         <td th:text="${contract.facility.name}"></td>
         <td>
-            <button type="button" class=" btn btn-primary">
-                <a href="" class="text-white"> + </a>
+            <button type="button" class=" btn btn-primary"  data-toggle="modal" data-target="#contractDetail">
+                +
             </button>
             <a href="" class="bg-primary text-white">Danh sách các dịch vụ đi kèm</a>
         </td>
@@ -55,6 +55,63 @@
     </tr>
 
 </table>
+
+<div class="modal fade" id="contractDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tạo mới hợp đồng chi tiết</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label >Ngày bắt đầu:</label>
+                    <input type="date" class="form-control" id="1">
+                </div>
+                <div class="form-group">
+                    <label>Ngày kết thúc:</label>
+                    <input type="date" class="form-control"  id="2" >
+                </div>
+                <div class="form-group">
+                    <label>Số tiền gửi:</label>
+                    <input type="text" class="form-control"  id="3" >
+                </div>
+                <div class="form-group">
+                    <label>Tổng tiền:</label>
+                    <input type="text" class="form-control"  id="4" >
+                </div>
+                <div class="form-group">
+                    <select name="customer" class="form-control custom-select bg-light" id="customer">
+                        <option th:each="customer:${listCustomer}" th:value="${customer.id}"
+                                th:text="${customer.name}"> Khách hàng thuê
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="facility" class="form-control custom-select bg-light" id="facility">
+                        <option th:each="facility:${listFacility}" th:value="${facility.id}"
+                                th:text="${facility.name}"> Dịch vụ
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Dịch vụ đi kèm:</label>
+                    <button type="button" class=" btn btn-primary" >
+                        +
+                    </button>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn btn-primary add" id="createCustomer" data-dismiss="modal">Tạo hợp đồng mới</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div>
     <span>

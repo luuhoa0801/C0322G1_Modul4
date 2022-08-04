@@ -19,7 +19,7 @@ public class Contract {
     private double deposit;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id",referencedColumnName = "id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
     @ManyToOne
@@ -27,7 +27,7 @@ public class Contract {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "facility_id",referencedColumnName = "id")
+    @JoinColumn(name = "facility_id", referencedColumnName = "id")
     private Facility facility;
 
     public Contract() {

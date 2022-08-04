@@ -1,7 +1,6 @@
 package com.codegym.casestudy.repository.employee;
 
 import com.codegym.casestudy.model.employee.Position;
-import com.codegym.casestudy.model.employee.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

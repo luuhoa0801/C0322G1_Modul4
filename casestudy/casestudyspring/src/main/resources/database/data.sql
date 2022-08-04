@@ -25,19 +25,19 @@ INSERT INTO education_degree (`name`) VALUE
 ('hành chính'),
 ('làm nhân viên'),
 ('làm full time');
-INSERT INTO `role`(role_name) VALUE 
-('Admin'),
-('nhân viên thường');
-
+# INSERT INTO `role`(role_name) VALUE
+# ('Admin'),
+# ('nhân viên thường');
+#
 INSERT INTO `user`(username,pass_word) VALUE
 ('duytrung123','111' ),
 ('luuhoa0801','222' );
 
-SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO user_role(role_id,user_name) VALUE
-(1,2),
-(2,1);
-SET FOREIGN_KEY_CHECKS=1;
+# SET FOREIGN_KEY_CHECKS=0;
+# INSERT INTO user_role(role_id,user_name) VALUE
+# (1,2),
+# (2,1);
+# SET FOREIGN_KEY_CHECKS=1;
 
 INSERT INTO employee(date_of_birth,email,id_card,`name`,phone,salary,`status`,division_id,education_degree_id,position_id,username) VALUE
 ('1994-04-14','nguyenvana@gmail.com','111111111','Nguyen Van A','0978654111',10000.0,0,1,2,1,'duytrung123'),
